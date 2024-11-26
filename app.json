@@ -19,7 +19,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "buildProperties": {
+        "enableProguardInReleaseBuilds": true,
+        "enableHermes": true
+      },
+      "package": "com.zimmy.MyApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
