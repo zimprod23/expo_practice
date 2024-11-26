@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./HomeStack";
 import ProfileStack from "./ProfileStack";
-import { Ionicons } from "@expo/vector-icons"; // Import Ionicons directly
+import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../contexts/Theme/ThemeContext";
 
 const Tab = createBottomTabNavigator();
@@ -14,9 +14,9 @@ const TabNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: theme.colors.background, // Dynamic background
+          // backgroundColor: theme.colors.background,
         },
-        tabBarActiveTintColor: theme.colors.text, // Dynamic active color
+        tabBarActiveTintColor: theme.colors.text,
         tabBarInactiveTintColor: "gray",
       }}
     >

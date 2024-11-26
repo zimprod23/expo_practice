@@ -11,7 +11,7 @@ interface PersonState {
 
 const initialState: PersonState = {
   persons: persons,
-  status: "idle", // Initially, the status is idle
+  status: "idle",
   error: null,
 };
 
@@ -25,7 +25,6 @@ export const removePersonAsync = createAsyncThunk(
 
 export const counterSlice = createSlice({
   name: "person",
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     addPerson(state, action: PayloadAction<Person>) {
@@ -40,16 +39,16 @@ export const counterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(removePersonAsync.pending, (state) => {
-        state.status = "loading"; // Set status to loading while removing
+        state.status = "loading";
       })
       .addCase(removePersonAsync.fulfilled, (state, action) => {
-        state.status = "idle"; // Set status to idle after removing
+        state.status = "idle";
         state.persons = state.persons.filter(
           (person) => person.phoneNumber !== action.payload
-        ); // Remove person by phoneNumber
+        );
       })
       .addCase(removePersonAsync.rejected, (state, action) => {
-        state.status = "failed"; // Set status to failed if there's an error
+        state.status = "failed";
         state.error = action.error.message ?? "Failed to remove person";
       });
   },
@@ -57,7 +56,6 @@ export const counterSlice = createSlice({
 
 export const { addPerson, removePerson } = counterSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectPersons = (state: RootState) => state.person.persons;
+export const selectPerson = (state: RootState) => state.person;
 
 export default counterSlice.reducer;

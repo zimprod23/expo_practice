@@ -1,11 +1,14 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { Screen } from "../../components/themed/ThemedScreen";
+import { Text } from "../../components/themed/ThemedText";
+import { View } from "react-native";
+import { ContainerStyles } from "../../styles/GlobalStyles";
 
 const ProfileScreen = () => {
   return (
-    <View>
-      <Text>ProfileScreen</Text>
-    </View>
+    <Screen style={ContainerStyles.centerizedContainer}>
+      <Text>Profile</Text>
+    </Screen>
   );
 };
 

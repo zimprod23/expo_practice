@@ -1,0 +1,42 @@
+const tintColorLight = "#2f95dc";
+const tintColorDark = "#fff";
+
+export default {
+  light: {
+    text: "#000",
+    text2: "rgba(44, 62, 80,1.0)",
+    background: "#fff",
+    background2: "#ecf0f1",
+    input: "#D8DCE2",
+    input2: "#D8DCE2",
+    primary: "#ff3838",
+    primaryMuted: "rgba(255, 71, 87,1.0)",
+    primarySoft: "#ff6b81",
+    tint: "#000", //tintColorLight,
+    sampleButton: "#ecf0f1",
+    tabIconDefault: "#ccc",
+    tabIconSelected: tintColorLight,
+    background_: "#F5F5F5",
+    dark_: "#141518",
+    gray: "#626D77",
+    lightGray: "#D8DCE2",
+    cloudGray: "#ecf0f1",
+    cloudGray2: "rgba(255, 255, 255,1.0)",
+    silverGray: "#bdc3c7",
+    midnightBlue: "rgba(44, 62, 80,1.0)",
+    wetBlue: "rgba(52, 73, 94,1.0)",
+  },
+  dark: {
+    input: "#282A2C", //"#34495e",
+    text: "#fff",
+    background: "#18191A",
+    background2: "#242526",
+    primary: "rgba(179, 57, 57,1.0)",
+    primaryMuted: "rgba(231, 76, 60,1.0)",
+    primarySoft: "rgba(255, 94, 87,1.0)",
+    sampleButton: "#000",
+    tint: tintColorDark,
+    tabIconDefault: "#ccc",
+    tabIconSelected: tintColorDark,
+  },
+};
