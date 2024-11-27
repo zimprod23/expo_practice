@@ -3,7 +3,7 @@ import { ThemeProps, useThemeColor } from "../../hooks/useThemeColor";
 
 type TextProps = ThemeProps & DefaultText["props"];
 
-export function Text(props: TextProps) {
+export default function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
 

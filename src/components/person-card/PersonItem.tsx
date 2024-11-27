@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { Person } from "../../state/static/sampleData";
 import { Ionicons } from "@expo/vector-icons"; // Import Ionicons directly
@@ -7,12 +7,20 @@ import { useThemeColor } from "../../hooks/useThemeColor";
 interface PersonItemProps {
   person: Person;
   onRemove: (phoneNumber: string) => void;
+  onPress: (person: Person) => void;
 }
-const PersonItem: React.FC<PersonItemProps> = ({ person, onRemove }) => {
+const PersonItem: React.FC<PersonItemProps> = ({
+  person,
+  onRemove,
+  onPress,
+}) => {
   const background = useThemeColor({}, "background2");
   const textColor = useThemeColor({}, "text");
   return (
-    <View style={[styles.itemContainer, { backgroundColor: background }]}>
+    <Pressable
+      style={[styles.itemContainer, { backgroundColor: background }]}
+      onPress={() => onPress(person)}
+    >
       <View style={styles.textContainer}>
         <Text style={[styles.name, { color: textColor }]}>{person.name}</Text>
         <Text style={styles.phoneNumber}>{person.phoneNumber}</Text>
@@ -27,7 +35,7 @@ const PersonItem: React.FC<PersonItemProps> = ({ person, onRemove }) => {
         onPress={() => onRemove(person.phoneNumber)}
         style={styles.removeIcon}
       />
-    </View>
+    </Pressable>
   );
 };
 

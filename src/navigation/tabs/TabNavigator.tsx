@@ -4,8 +4,9 @@ import HomeStack from "./HomeStack";
 import ProfileStack from "./ProfileStack";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../contexts/Theme/ThemeContext";
+import { TabParamList } from "../../types/navigation.types";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   const { theme } = useTheme();
