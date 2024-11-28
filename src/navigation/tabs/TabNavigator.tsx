@@ -5,11 +5,14 @@ import ProfileStack from "./ProfileStack";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../../contexts/Theme/ThemeContext";
 import { TabParamList } from "../../types/navigation.types";
+import { Pressable, View } from "react-native";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => {
   const { theme } = useTheme();
+  const { signOut } = useAuthContext();
 
   return (
     <Tab.Navigator
@@ -20,12 +23,23 @@ const TabNavigator = () => {
         tabBarActiveTintColor: theme.colors.text,
         tabBarInactiveTintColor: "gray",
       }}
+      initialRouteName="HomeStack"
     >
       <Tab.Group
-        screenOptions={{
+        screenOptions={({ navigation }) => ({
           headerTitleAlign: "center",
           headerShadowVisible: false,
-        }}
+          headerRight: () => (
+            <Pressable
+              style={{ padding: 5, marginRight: 10 }}
+              onPress={() => {
+                signOut();
+              }}
+            >
+              <Ionicons name="log-out-outline" size={35} color={"red"} />
+            </Pressable>
+          ),
+        })}
       >
         <Tab.Screen
           name="HomeStack"
