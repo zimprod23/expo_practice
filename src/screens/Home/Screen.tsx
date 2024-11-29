@@ -18,8 +18,11 @@ import { ActivityIndicator, FAB } from "react-native-paper";
 import { addPerson, fetchPersons, removePerson } from "../../api/person.api";
 import SnackBar from "../../components/snackbar/SnackBar";
 import { ContainerStyles } from "../../styles/GlobalStyles";
+import withDraggable from "../../hoc/withDraggable";
+import Draggable from "../../hoc/withDraggable";
 
 type HomeStackNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
+// const DraggableFAB = withDraggable(FAB);
 
 const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -101,7 +104,13 @@ const HomeScreen = () => {
       <FAB
         icon="plus"
         style={styles.fab}
-        onPress={() => console.log("Pressed")}
+        onPress={async () => {
+          try {
+            await addPersonAsync(Math.random() * Math.pow(5, 5) + "");
+          } catch (error) {
+            console.error(error);
+          }
+        }}
       />
     </ThemedScreen>
   );
