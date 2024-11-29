@@ -1,4 +1,4 @@
-import { PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { TabNavigator } from "./tabs";

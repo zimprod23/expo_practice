@@ -7,12 +7,14 @@ interface PersonState {
   persons: Person[];
   status: "idle" | "loading" | "failed";
   error: string | null;
+  loading: boolean | undefined;
 }
 
 const initialState: PersonState = {
-  persons: persons,
+  persons: persons as Person[],
   status: "idle",
   error: null,
+  loading: undefined,
 };
 
 export const removePersonAsync = createAsyncThunk(

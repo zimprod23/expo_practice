@@ -1,12 +1,6 @@
-export type Person = {
-  name: string;
-  phoneNumber: string;
-  address?: string;
-  image?: string;
-  age: number;
-};
+import { Person } from "../state/static/sampleData";
 
-export const persons: Person[] = [
+const persons: Person[] = [
   {
     name: "John Doe",
     phoneNumber: "123-456-7890",
@@ -70,24 +64,40 @@ export const persons: Person[] = [
   },
 ];
 
-export const fetchPersons = async (query: ""): Promise<Person[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+export const fetchPersons = async (query = ""): Promise<Person[]> => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const prs = persons.filter((p) => p.name.toLowerCase().includes(query));
-  return [...prs];
+  const filteredPersons = persons.filter((prs) =>
+    prs.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // Uncomment the line below to trigger an error
+  // throw new Error();
+
+  return [...filteredPersons];
 };
 
-export const addPerson = async (
-  person: Pick<Person, "name">
-): Promise<Person> => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+export const removePerson = async (phoneNumber: string): Promise<boolean> => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const prs: Person = {
-    name: person.name,
-    age: 120,
-    address: "nowhere",
-    phoneNumber: "02023265",
+  const index = persons.findIndex((p) => p.phoneNumber === phoneNumber);
+  if (index === -1) {
+    throw new Error("Item does not exist");
+  }
+  persons.splice(index, 1);
+  return true;
+};
+
+export const addPerson = async (phoneNumber: string): Promise<Person> => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const person = {
+    name: "demo",
+    phoneNumber: phoneNumber,
+    address: "Nowhere",
+    age: 45,
   };
-  persons.push(prs);
-  return prs;
+
+  persons.push(person);
+  return person as Person;
 };

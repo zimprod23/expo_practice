@@ -5,7 +5,6 @@ import React, {
   ReactNode,
   useContext,
 } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { AuthResponse, SignInParams } from "../types/api.types";
 import { StorageService } from "../state/persistence";
 import { signIn as signInApi } from "../api/auth.api";
