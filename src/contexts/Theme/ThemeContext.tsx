@@ -1,26 +1,34 @@
 // src/theme/ThemeProvider.tsx
 import React, { createContext, useState, useContext } from "react";
 import { DefaultTheme, DarkTheme, Theme } from "@react-navigation/native";
+import {
+  DefaultTheme as PaperDefaultTheme,
+  MD3DarkTheme as PaperDarkTheme,
+} from "react-native-paper";
 import { DarkThemeColors, LightThemeColors } from "../../state/static/index";
 
-export const LightTheme: Theme = {
+export const LightTheme = {
   ...DefaultTheme,
+  ...PaperDefaultTheme,
   colors: {
     ...DefaultTheme.colors,
+    ...PaperDefaultTheme.colors,
   },
 };
 
-export const AppDarkTheme: Theme = {
+export const AppDarkTheme = {
   ...DarkTheme,
+  ...PaperDarkTheme,
   colors: {
     ...DarkTheme.colors,
+    ...DarkThemeColors,
   },
 };
 
 type Mode = "light" | "dark";
 
 interface ThemeContextProps {
-  theme: Theme;
+  theme: any;
   toggleTheme: () => void;
   isDarkMode: boolean;
   mode: Mode;

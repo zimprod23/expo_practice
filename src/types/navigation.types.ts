@@ -9,6 +9,7 @@ export type HomeStackParamList = {
 export type TabParamList = {
   HomeStack: NavigatorScreenParams<HomeStackParamList>;
   ProfileStack: undefined;
+  Places: undefined;
 };
 
 export type AuthStackParamList = {

@@ -10,10 +10,9 @@ type SnackBarProps = {
 
 const SnackBar: React.FC<SnackBarProps> = ({ Hide, isVisible }) => {
   const [visible, setVisible] = React.useState(isVisible);
-
-  //   const onToggleSnackBar = () => setVisible(!visible);
-
-  //   const onDismissSnackBar = () => setVisible(false);
+  React.useEffect(() => {
+    setVisible(isVisible);
+  }, [isVisible]);
 
   return (
     <View style={styles.container}>
@@ -21,13 +20,13 @@ const SnackBar: React.FC<SnackBarProps> = ({ Hide, isVisible }) => {
         visible={visible}
         onDismiss={Hide}
         action={{
-          label: "Undo",
+          label: "Remove",
           onPress: () => {
             // Do something
           },
         }}
       >
-        Hey there! I'm a Snackbar.
+        Item Deleted
       </Snackbar>
     </View>
   );

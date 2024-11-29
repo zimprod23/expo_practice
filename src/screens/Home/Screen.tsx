@@ -1,11 +1,11 @@
 // src/screens/Home/HomeScreen.tsx
 
-import { FlatList, StyleSheet } from "react-native";
-import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
 import { Person } from "../../state/static/sampleData";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import {
-  removePersonAsync,
+  // removePersonAsync,
   selectPerson,
 } from "../../state/redux/person/PersonSlice";
 import PersonItem from "../../components/person-card/PersonItem";
@@ -14,9 +14,10 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "../../types/navigation.types";
 import { ThemedScreen } from "../../components/themed";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator, FAB } from "react-native-paper";
 import { addPerson, fetchPersons, removePerson } from "../../api/person.api";
 import SnackBar from "../../components/snackbar/SnackBar";
+import { ContainerStyles } from "../../styles/GlobalStyles";
 
 type HomeStackNavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
@@ -24,6 +25,7 @@ const HomeScreen = () => {
   const dispatch = useAppDispatch();
   const { persons, loading } = useAppSelector(selectPerson);
   const navigation = useNavigation<HomeStackNavigationProp>();
+  const [isVisible, setIsVisible] = useState(false);
   const queryClient = useQueryClient();
 
   // Navigating to the details
@@ -59,6 +61,7 @@ const HomeScreen = () => {
     try {
       const res = await removePersonAsync(phoneNumber);
       console.log("response :: ", res);
+      setIsVisible(true);
     } catch (error) {
       console.log("Cannot do this operation");
       console.error(error);
@@ -77,21 +80,29 @@ const HomeScreen = () => {
 
   return (
     <ThemedScreen style={styles.container}>
-      {!loading || isLoading ? (
+      {!isLoading ? (
         <FlatList
           showsVerticalScrollIndicator={false}
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.phoneNumber}
+          contentContainerStyle={{ paddingBottom: 65 }}
         />
       ) : (
-        <ActivityIndicator
-          size="small"
-          color="blue"
-          style={{ alignSelf: "center" }}
-        />
+        <View style={ContainerStyles.centerizedContainer}>
+          <ActivityIndicator
+            size="small"
+            color="blue"
+            style={{ alignSelf: "center" }}
+          />
+        </View>
       )}
-      {/* <SnackBar isVisible={true} Hide={() => {}} /> */}
+      <SnackBar isVisible={isVisible} Hide={() => setIsVisible(false)} />
+      <FAB
+        icon="plus"
+        style={styles.fab}
+        onPress={() => console.log("Pressed")}
+      />
     </ThemedScreen>
   );
 };
@@ -102,6 +113,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 16,
     justifyContent: "center",
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });
 

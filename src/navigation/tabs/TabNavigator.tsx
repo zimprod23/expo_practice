@@ -2,11 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStack from "./HomeStack";
 import ProfileStack from "./ProfileStack";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "../../contexts/Theme/ThemeContext";
 import { TabParamList } from "../../types/navigation.types";
 import { Pressable, View } from "react-native";
 import { useAuthContext } from "../../contexts/AuthContext";
+import PlacesScreen from "../../screens/Places";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -47,7 +48,7 @@ const TabNavigator = () => {
           options={{
             title: "Home",
             tabBarIcon: ({ color, size }) => (
-              <Ionicons name="home-outline" size={size} color={color} />
+              <Ionicons name="home" size={size} color={color} />
             ),
           }}
         />
@@ -59,6 +60,16 @@ const TabNavigator = () => {
 
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="person-circle" size={size} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Places"
+          component={PlacesScreen}
+          options={{
+            title: "Places",
+            tabBarIcon: ({ color, size }) => (
+              <MaterialIcons name="nature-people" size={size} color={color} />
             ),
           }}
         />

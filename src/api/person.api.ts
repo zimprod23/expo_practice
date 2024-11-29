@@ -71,9 +71,6 @@ export const fetchPersons = async (query = ""): Promise<Person[]> => {
     prs.name.toLowerCase().includes(query.toLowerCase())
   );
 
-  // Uncomment the line below to trigger an error
-  // throw new Error();
-
   return [...filteredPersons];
 };
 
