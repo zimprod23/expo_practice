@@ -21,6 +21,7 @@ const TabNavigator = () => {
         tabBarStyle: {
           // backgroundColor: theme.colors.background,
         },
+
         tabBarActiveTintColor: theme.colors.text,
         tabBarInactiveTintColor: "gray",
       }}

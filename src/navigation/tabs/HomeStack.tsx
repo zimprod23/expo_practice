@@ -15,6 +15,7 @@ const HomeStack = () => {
       initialRouteName="Home"
       screenOptions={({ navigation, route }) => ({
         headerShown: false,
+        gestureEnabled: true,
       })}
     >
       <Stack.Group screenOptions={({ navigation }) => ({})}>
